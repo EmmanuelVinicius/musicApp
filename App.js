@@ -9,7 +9,7 @@ import {
   Dimensions,
 } from "react-native";
 import MapView from "react-native-maps";
-import Search from "./searchBar";
+import Search from "./pages/searchPage";
 import RolagemLateral from "./components/rolagemLateral";
 
 const Images = [
@@ -131,10 +131,11 @@ export default class App extends Component {
         <Icon
           containerStyle={styles.icon}
           raised
+          size={30}
           name='search'
-          type='font-awesome'
-          color='#f50'
-          onPress={() => console.log('hello')} />
+          type='material'
+          color='#1a281f'
+          onPress={() => <Search />} />
         <MapView
           ref={map => this.map = map}
           initialRegion={this.state.region}
@@ -175,8 +176,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   icon: {
-    width: 60,
-    height: 60,
     position: 'absolute',
     top: 10,
     right: 10,

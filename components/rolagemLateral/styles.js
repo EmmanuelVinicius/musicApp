@@ -15,27 +15,19 @@ const styles = StyleSheet.create({
     endPadding: {
         paddingRight: width - CARD_WIDTH,
     },
-    icon: {
-        width: 90,
-        height: 90,
-        position: 'absolute',
-        top: 10,
-        right: 10,
-    },
     iconCard: {
         display: 'flex',
         padding: 6,
         elevation: 2,
-        backgroundColor: "#009",
         marginHorizontal: 6,
         height: CARD_HEIGHT,
-        width: CARD_WIDTH,
+        width: CARD_WIDTH / 2,
         overflow: "hidden",
     },
     card: {
         padding: 6,
         elevation: 2,
-        backgroundColor: "#900",
+        backgroundColor: "#c0e8f9",
         marginHorizontal: 6,
         shadowColor: "#000",
         shadowRadius: 5,
@@ -50,18 +42,21 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "100%",
         alignSelf: "center",
+        borderColor: '#b8d3d1',
+        borderWidth: 2
     },
     textContent: {
         flex: 1,
     },
     cardtitle: {
-        fontSize: 22,
+        fontSize: 26,
         marginTop: 5,
+        color: '#1a281f',
         fontWeight: "bold",
     },
     cardDescription: {
-        fontSize: 12,
-        color: "#444",
+        fontSize: 15,
+        color: "#1a281f",
     },
 });
 
