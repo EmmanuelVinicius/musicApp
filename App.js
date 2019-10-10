@@ -1,5 +1,5 @@
-
 import React, { Component } from "react";
+import { Icon } from 'react-native-elements'
 import {
   StyleSheet,
   Text,
@@ -8,8 +8,9 @@ import {
   Image,
   Dimensions,
 } from "react-native";
-
 import MapView from "react-native-maps";
+import Search from "./searchBar";
+import RolagemLateral from "./components/rolagemLateral";
 
 const Images = [
   { uri: "https://images.reverb.com/image/upload/s--kowfE9WC--/a_exif,c_limit,e_unsharp_mask:80,f_auto,fl_progressive,g_south,h_1600,q_80,w_1600/v1479145764/edez28ss7iay7anqv1iw.jpg" },
@@ -21,9 +22,9 @@ const Images = [
 const { width, height } = Dimensions.get("window");
 
 const CARD_HEIGHT = height / 2.5;
-const CARD_WIDTH = CARD_HEIGHT - 50;
+const CARD_WIDTH = CARD_HEIGHT + 50;
 
-export default class screens extends Component {
+export default class App extends Component {
   state = {
     markers: [
       {
@@ -127,6 +128,13 @@ export default class screens extends Component {
 
     return (
       <View style={styles.container}>
+        <Icon
+          containerStyle={styles.icon}
+          raised
+          name='search'
+          type='font-awesome'
+          color='#f50'
+          onPress={() => console.log('hello')} />
         <MapView
           ref={map => this.map = map}
           initialRegion={this.state.region}
@@ -153,42 +161,10 @@ export default class screens extends Component {
             );
           })}
         </MapView>
-        <Animated.ScrollView
-          horizontal
-          scrollEventThrottle={1}
-          showsHorizontalScrollIndicator={false}
-          snapToInterval={CARD_WIDTH}
-          onScroll={Animated.event(
-            [
-              {
-                nativeEvent: {
-                  contentOffset: {
-                    x: this.animation,
-                  },
-                },
-              },
-            ],
-            { useNativeDriver: true }
-          )}
-          style={styles.scrollView}
-          contentContainerStyle={styles.endPadding}
-        >
-          {this.state.markers.map((marker, index) => (
-            <View style={styles.card} key={index}>
-              <Image
-                source={marker.image}
-                style={styles.cardImage}
-                resizeMode="cover"
-              />
-              <View style={styles.textContent}>
-                <Text numberOfLines={1} style={styles.cardtitle}>{marker.title}</Text>
-                <Text numberOfLines={1} style={styles.cardDescription}>
-                  {marker.description}
-                </Text>
-              </View>
-            </View>
-          ))}
-        </Animated.ScrollView>
+        <RolagemLateral
+          width={CARD_WIDTH}
+          animation={this.animation}
+        />
       </View>
     );
   }
@@ -198,46 +174,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  scrollView: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    paddingVertical: 0,
-  },
-  endPadding: {
-    paddingRight: width - CARD_WIDTH,
-  },
-  card: {
-    padding: 6,
-    elevation: 2,
-    backgroundColor: "#FFF",
-    marginHorizontal: 20,
-    shadowColor: "#000",
-    shadowRadius: 5,
-    shadowOpacity: 0.8,
-    shadowOffset: { x: 2, y: -2 },
-    height: CARD_HEIGHT,
-    width: CARD_WIDTH,
-    overflow: "hidden",
-  },
-  cardImage: {
-    flex: 3,
-    width: "100%",
-    height: "100%",
-    alignSelf: "center",
-  },
-  textContent: {
-    flex: 1,
-  },
-  cardtitle: {
-    fontSize: 22,
-    marginTop: 5,
-    fontWeight: "bold",
-  },
-  cardDescription: {
-    fontSize: 12,
-    color: "#444",
+  icon: {
+    width: 60,
+    height: 60,
+    position: 'absolute',
+    top: 10,
+    right: 10,
   },
   markerWrap: {
     alignItems: "center",
