@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Animated, StyleSheet, View, Image, Text } from "react-native";
-import { Icon } from "react-native-elements";
+import { Icon, Button } from "react-native-elements";
 import styles from './styles'
 
 const Images = [
@@ -101,13 +101,18 @@ export default class RolagemLateral extends Component {
             justifyContent: 'center',
             alignItems: 'center'
           }}>
-            <Icon
+          <Button
+          icon={<Icon
               raised
               size={30}
               name='arrow-forward'
               type='material'
               color='#1a281f'
-              onPress={() => console.log('hello')} />
+          onPress={() => this.props.navigation.navigate('Search')} />}
+
+              
+              type="clear"
+              />
             <Text style={{fontSize: 20, fontWeight: 'bold'}}>Visualizar todos</Text>
           </View>
         </View>
